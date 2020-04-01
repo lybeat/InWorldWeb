@@ -1,18 +1,32 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class='home'>
+    <el-menu :default-active='activeName' mode='horizontal' @select="switchMenu">
+      <el-menu-item index='/news'>资讯</el-menu-item>
+      <el-menu-item index="/about">关于</el-menu-item>
+    </el-menu>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      activeName: 'news'
+    }
+  },
+  components: {},
+  activated() {
+    this.$router.push({ path: this.activeName })
+  },
+  methods: {
+    switchMenu(active) {
+      this.activeName = active
+      this.$router.push({ path: this.activeName })
+    }
   }
 }
 </script>
