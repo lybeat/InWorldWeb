@@ -18,10 +18,10 @@ export default {
       activeName: 'news'
     }
   },
-  components: {},
   activated() {
     this.$router.push({ path: this.activeName })
   },
+  components: {},
   methods: {
     switchMenu(active) {
       this.activeName = active

@@ -1,55 +1,53 @@
 import axios from 'axios'
-import router from '../router/index'
-import store from '../store/index'
-import url from './url'
+import { Message } from 'element-ui';
 
-axios.defaults.baseURL = url.host
+const service = axios.create({
+  withCredentials: true,
+  baseURL: 'http://localhost:3000',
+  timeout: 15000 // 请求超时时间
+})
 
-axios.defaults.timeout = 30000
+service.interceptors.request.use(config => {
+  //config.headers['Accept'] = 'application/json'
+  return config
+}, error => {
+  Promise.reject(error)
+})
 
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
-
-axios.interceptors.request.use(
-  config => {
-    const token = store.state.token
-    token && (config.headers.Authorization = token)
-    return config
-  },
-  error => {
-    return Promise.error(error)
-  }
-)
-
-axios.interceptors.response.use(
+service.interceptors.response.use(
   response => {
-    if (response.status == 200) {
-      return Promise.resolve(response)
-    } else {
+    if (response.data.code !== 200) {
+      switch (response.data.code) {
+        case 401: // 用户未登录
+          break;
+        default:
+          console.log(response.data.msg);
+          Message({
+            message: response.data.msg || '未知错误',
+            type: 'error',
+            center: true
+          })
+          break;
+      }
       return Promise.reject(response)
+    } else {
+      return response.data
     }
+
+
   },
   error => {
-    if (error.response.status) {
-      switch (error.response.status) {
-        case 401: // 未登录
-          gotoLoginPage()
-          break
-        case 403: // token 过期
-          localStorage.removeItem('token')
-          store.commit('loginSuccess', null)
-          setTimeout(() => {
-            gotoLoginPage()
-          }, 1000)
-          break
-        case 404: // 请求不存在
-          break
-        default:
-          break
-      }
-      return Promise.reject(error.response)
+    if (error.response) {
+      const res = error.response.data
+
+      return Promise.reject(res)
+    } else {
+      return Promise.reject(error)
     }
   }
 )
+
+export default service
 
 const gotoLoginPage = () => {
   router.replace({
