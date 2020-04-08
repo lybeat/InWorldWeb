@@ -2,7 +2,7 @@ import axios from 'axios'
 import { Message } from 'element-ui';
 
 const service = axios.create({
-  withCredentials: true,
+  withCredentials: false,
   baseURL: 'http://localhost:3000',
   timeout: 15000 // 请求超时时间
 })

@@ -1,5 +1,7 @@
 import http from './http'
 
+const v1 = '/api/v1'
+
 export function login(username, password) {
   return http.get('/login?username=' + username + "&password=" + password)
 }
@@ -13,7 +15,7 @@ export function getBannerList() {
 }
 
 export function getArticleList() {
-  return http.get('/article')
+  return http.get(v1 + '/article/list')
 }
 
 export function getArticleDetail(id) {

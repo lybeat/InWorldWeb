@@ -1,8 +1,8 @@
 <template>
   <div class='home'>
-    <el-menu :default-active='activeName' mode='horizontal' @select="switchMenu">
+    <el-menu :default-active='activeName' mode='horizontal' @select='switchMenu'>
       <el-menu-item index='/news'>资讯</el-menu-item>
-      <el-menu-item index="/about">关于</el-menu-item>
+      <el-menu-item index='/about'>关于</el-menu-item>
     </el-menu>
     <keep-alive>
       <router-view></router-view>
@@ -15,7 +15,7 @@ export default {
   name: 'Home',
   data() {
     return {
-      activeName: 'news'
+      activeName: '/news'
     }
   },
   activated() {
@@ -24,8 +24,10 @@ export default {
   components: {},
   methods: {
     switchMenu(active) {
-      this.activeName = active
-      this.$router.push({ path: this.activeName })
+      if (active != this.activeName) {
+        this.activeName = active
+        this.$router.push({ path: this.activeName })
+      }
     }
   }
 }
