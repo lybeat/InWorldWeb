@@ -4,6 +4,7 @@
     :class='state'
     @mouseenter='onMouseHover("selected")'
     @mouseleave='onMouseHover("normal")'
+    @click='gotoArticleDetail(article.id)'
   >
     <div class='type-no-pic' v-if='article.type == "no-pic"'>
       <h3 class='title'>{{ article.title }}</h3>
@@ -19,7 +20,7 @@
         <p class='content'>{{ article.content }}</p>
         <div class='bottom-box'>
           <p class='author'>{{ article.author }}</p>
-          <p class='time'>{{ article.time }}</p>
+          <p class='time'>{{ article.createdAt }}</p>
         </div>
       </div>
       <img :src='article.images[0]' class='cover' />
@@ -30,7 +31,7 @@
       <p class='content'>{{ article.content }}</p>
       <div class='bottom-box'>
         <p class='author'>{{ article.author }}</p>
-        <p class='time'>{{ article.time }}</p>
+        <p class='time'>{{ article.createdAt }}</p>
       </div>
     </div>
     <div class='type-only-one-pic' v-if='article.type == "only-one-pic"'>
@@ -54,19 +55,19 @@ export default {
       require: true
     }
   },
-  components: {},
   data() {
     return {
       state: 'normal'
     }
   },
-  mounted() {
-    console.log('article: ' + this.article);
-    
-  },
   methods: {
     onMouseHover(state) {
       this.state = state
+    },
+    gotoArticleDetail(id) {
+      console.log('gotoArticleDetail: ' + id)
+
+      this.$router.push({ path: `/article/${id}` })
     }
   }
 }

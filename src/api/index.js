@@ -19,5 +19,5 @@ export function getArticleList() {
 }
 
 export function getArticleDetail(id) {
-  return http.get('/article?id=' + id)
+  return http.get(v1 + '/article/' + id)
 }

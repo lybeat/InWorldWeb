@@ -1,6 +1,7 @@
 <template>
   <div class='home'>
-    <el-menu :default-active='activeName' mode='horizontal' @select='switchMenu'>
+    <banner :image='bannerImage'></banner>
+    <el-menu class='menu' :default-active='activeName' mode='horizontal' @select='switchMenu'>
       <el-menu-item index='/news'>资讯</el-menu-item>
       <el-menu-item index='/about'>关于</el-menu-item>
     </el-menu>
@@ -11,17 +12,23 @@
 </template>
 
 <script>
+import Banner from '../components/Banner'
+
 export default {
   name: 'Home',
   data() {
     return {
-      activeName: '/news'
+      activeName: '/news',
+      bannerImage:
+        'http://i0.hdslb.com/bfs/archive/ed92db305ae43c7fc8a59b1789934caa2636b876.png'
     }
   },
   activated() {
     this.$router.push({ path: this.activeName })
   },
-  components: {},
+  components: {
+    Banner
+  },
   methods: {
     switchMenu(active) {
       if (active != this.activeName) {
@@ -32,3 +39,12 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+.home {
+  .menu {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+</style>

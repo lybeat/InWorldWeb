@@ -1,6 +1,11 @@
 <template>
   <div class='news'>
-    <article-item v-for='(article, index) in articleList' :key='index' :article='article'></article-item>
+    <article-item
+      class='article-item'
+      v-for='(article, index) in articleList'
+      :key='index'
+      :article='article'
+    ></article-item>
   </div>
 </template>
 
@@ -80,7 +85,6 @@ export default {
     getNewsList() {
       getArticleList().then(res => {
         this.articleList = res.data
-        console.log('articleList: ' + res.code)
       })
     }
   }
@@ -88,4 +92,10 @@ export default {
 </script>
 
 <style lang="less">
+.news {
+  .article-item {
+    width: 60%;
+    margin: 0 auto;
+  }
+}
 </style>
