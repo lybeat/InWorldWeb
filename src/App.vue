@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="in-world">
     <router-view></router-view>
   </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
 
 export default {
-  name: 'app',
+  name: 'in-world',
 }
 </script>
 
@@ -17,10 +17,12 @@ export default {
   padding: 0;
 }
 
-#app {
+#in-world {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #333;
+  width: 100%;
+  overflow-x: hidden;
 }
 </style>

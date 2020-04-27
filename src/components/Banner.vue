@@ -16,6 +16,14 @@ export default {
 };
 </script>
 
-<style lang="banner" scoped>
-
+<style lang="less" scoped>
+.banner {
+  width: 100%;
+  height: 180px;
+  img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+}
 </style>

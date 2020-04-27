@@ -1,9 +1,8 @@
 import axios from 'axios'
-import { Message } from 'element-ui';
 
 const service = axios.create({
   withCredentials: false,
-  baseURL: 'http://localhost:3000',
+  baseURL: 'http://127.0.0.1:8000',
   timeout: 15000 // 请求超时时间
 })
 
@@ -22,11 +21,6 @@ service.interceptors.response.use(
           break;
         default:
           console.log(response.data.msg);
-          Message({
-            message: response.data.msg || '未知错误',
-            type: 'error',
-            center: true
-          })
           break;
       }
       return Promise.reject(response)

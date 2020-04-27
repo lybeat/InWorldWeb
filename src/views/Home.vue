@@ -1,50 +1,43 @@
 <template>
   <div class='home'>
     <banner :image='bannerImage'></banner>
-    <el-menu class='menu' :default-active='activeName' mode='horizontal' @select='switchMenu'>
-      <el-menu-item index='/news'>资讯</el-menu-item>
-      <el-menu-item index='/about'>关于</el-menu-item>
-    </el-menu>
+    <tabs class="tabs"></tabs>
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
+    <div class='bottom-space'></div>
   </div>
 </template>
 
 <script>
 import Banner from '../components/Banner'
+import Tabs from '../components/Tabs'
 
 export default {
   name: 'Home',
   data() {
     return {
-      activeName: '/news',
       bannerImage:
         'http://i0.hdslb.com/bfs/archive/ed92db305ae43c7fc8a59b1789934caa2636b876.png'
     }
   },
-  activated() {
-    this.$router.push({ path: this.activeName })
-  },
+  activated() {},
   components: {
-    Banner
+    Banner,
+    Tabs
   },
-  methods: {
-    switchMenu(active) {
-      if (active != this.activeName) {
-        this.activeName = active
-        this.$router.push({ path: this.activeName })
-      }
-    }
-  }
+  methods: {}
 }
 </script>
 
 <style lang="less" scoped>
 .home {
-  .menu {
-    width: 80%;
-    margin: 0 auto;
+  .tabs {
+    margin-top: 20px;
+  }
+  .bottom-space {
+    width: 100%;
+    height: 100px;
   }
 }
 </style>
