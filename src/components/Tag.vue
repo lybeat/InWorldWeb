@@ -1,13 +1,12 @@
 <template>
-  <div class="tag">
-    <p class="name">{{ tag.name }}</p>
-    <p class="count">{{ tag.count }}</p>
+  <div class='tag' @click="gotoFilterPage">
+    <p class='name'>{{ tag.name }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name:"tag",
+  name: 'tag',
   props: {
     tag: {
       type: Object,
@@ -15,14 +14,24 @@ export default {
     }
   },
   data() {
-    return {};
+    return {}
   },
   created() {},
   mounted() {},
-  methods: {},
-};
+  methods: {
+    gotoFilterPage() {}
+  }
+}
 </script>
 
 <style lang="less" scoped>
-
+.tag {
+  font-size: 14px;
+  color: #999;
+  line-height: 20px;
+  margin: 0 20px 10px 0;
+  &:hover {
+    cursor: pointer;
+  }
+}
 </style>

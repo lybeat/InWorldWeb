@@ -29,27 +29,21 @@ export default {
 <style lang="less" scoped>
 .tab {
   .name {
-    color: #333;
+    color: #555;
     padding: 10px 20px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     &:hover {
       color: #f00;
       cursor: pointer;
-      border: solid 1px #f00;
     }
   }
   .normal {
     color: #333;
-    box-sizing: border-box;
-    border: solid 1px #aaa;
-    border-radius: 10px;
-    margin: 0 5px;
   }
   .pressed {
     color: #f00;
-    box-sizing: border-box;
-    border: solid 1px #f00;
-    border-radius: 10px;
-    margin: 0 5px;
   }
 }
 </style>

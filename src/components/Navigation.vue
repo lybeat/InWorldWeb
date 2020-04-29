@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs">
+  <div class="navigation">
     <tab class="tab" v-for="(t, index) in tabs" :key="index" :tab="t" @click.native="clearAllState(index)"></tab>
   </div>
 </template>
@@ -17,46 +17,25 @@ export default {
     return {
       tabs: [
         {
-          name: "文章",
-          path: "/articles",
+          name: "首页",
+          path: "/",
           state: 'pressed'
         },
         {
-          name: "游戏",
-          path: "/games",
+          name: "系统任务",
+          path: "/task",
           state: 'normal'
         },
         {
-          name: "前端",
-          path: "/games",
+          name: "升级材料",
+          path: "/upup",
           state: 'normal'
         },
         {
-          name: "后端",
-          path: "/games",
+          name: "Boss副本",
+          path: "/boss",
           state: 'normal'
-        },
-        {
-          name: "建模",
-          path: "/games",
-          state: 'normal'
-        },
-        {
-          name: "日语",
-          path: "/japanese",
-          state: 'normal'
-        },
-        {
-          name: "绘画",
-          path: "/paintings",
-          state: 'normal'
-        },
-        {
-          name: "关于",
-          path: "/about",
-          state: 'normal'
-        },
-        
+        }
       ]
     };
   },
@@ -74,10 +53,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.tabs {
-  width: 60%;
-  margin: 0 auto;
+.navigation {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   .tab {
     
     &:hover {

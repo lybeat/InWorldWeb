@@ -1,43 +1,87 @@
 <template>
   <div class='home'>
-    <banner :image='bannerImage'></banner>
-    <tabs class="tabs"></tabs>
-    <keep-alive>
-      <router-view></router-view>
-    </keep-alive>
-    <div class='bottom-space'></div>
+    <div class='post-container'>
+      <article-item :article='articles[0]'></article-item>
+      <article-item></article-item>
+      <article-item></article-item>
+    </div>
+    <div class='right-container'>
+      <div class='hot-search-container'>
+        <h3 class='category'>热门搜索</h3>
+        <tags class='hot-search' :tags='tags'></tags>
+      </div>
+      <div class='hot-label-container'>
+        <h3 class='category'>标签</h3>
+        <tags class='hot-label' :tags='tags'></tags>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import Banner from '../components/Banner'
-import Tabs from '../components/Tabs'
+import ArticleItem from './article/ArticleItem'
+import Tags from '../components/Tags'
 
 export default {
   name: 'Home',
   data() {
     return {
-      bannerImage:
-        'http://i0.hdslb.com/bfs/archive/ed92db305ae43c7fc8a59b1789934caa2636b876.png'
+      articles: [
+        {
+          id: 1
+        }
+      ],
+      tags: [
+        {
+          name: '公主连结Re: Dive'
+        },
+        {
+          name: 'U3D'
+        },
+        {
+          name: '那是一个怎么看都脱离现实，同时却又异常美丽珍贵的梦境'
+        },
+        {
+          name: 'Android'
+        },
+        {
+          name: 'Vue'
+        },
+        {
+          name: 'Golang'
+        },
+        {
+          name: 'Blender'
+        }
+      ]
     }
   },
-  activated() {},
   components: {
-    Banner,
-    Tabs
+    ArticleItem,
+    Tags
   },
+  activated() {},
   methods: {}
 }
 </script>
 
 <style lang="less" scoped>
 .home {
-  .tabs {
-    margin-top: 20px;
-  }
-  .bottom-space {
-    width: 100%;
-    height: 100px;
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+
+  .right-container {
+    margin: 70px 0 0 50px;
+
+    .hot-search-container {
+
+    }
+
+    .hot-label-container {
+      margin: 70px 0 0 0;
+    }
   }
 }
 </style>
