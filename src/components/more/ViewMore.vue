@@ -1,7 +1,8 @@
 <template>
-  <div class='o-more'>
+  <div class='view-more'>
     <div class='more-container' @click='gotoDetailPage'>
       <p class='more'>查看更多</p>
+      <i class='iconfont ohu-arrow_right'></i>
     </div>
   </div>
 </template>
@@ -34,14 +35,26 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.more-container {
-  margin: 40px 0 0 0;
-  font-size: 14px;
-  line-height: 18px;
-  color: #999;
-  text-align: center;
-  &:hover {
-    cursor: pointer;
+.view-more {
+  .more-container {
+    margin: 40px 0 0 0;
+    font-size: 14px;
+    line-height: 18px;
+    color: #999;
+    text-align: center;
+    position: relative;
+    &:hover {
+      cursor: pointer;
+    }
+
+    .more {
+      display: inline;
+    }
+
+    .iconfont {
+      position: absolute;
+      margin: 0 0 0 5px;
+    }
   }
 }
 </style>

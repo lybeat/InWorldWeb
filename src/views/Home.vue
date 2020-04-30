@@ -1,18 +1,29 @@
 <template>
   <div class='home'>
-    <div class='post-container'>
-      <article-item :article='articles[0]'></article-item>
-      <article-item></article-item>
-      <article-item></article-item>
+    <div class='carousel-container'>
+      <carousel :contents='carouselContents' @cellClick='cellClick'></carousel>
     </div>
-    <div class='right-container'>
-      <div class='hot-search-container'>
-        <h3 class='category'>热门搜索</h3>
-        <tags class='hot-search' :tags='tags'></tags>
+    <div class='content-container'>
+      <div class='post-container'>
+        <article-item :article='articles[0]'></article-item>
+        <article-item></article-item>
+        <article-item></article-item>
       </div>
-      <div class='hot-label-container'>
-        <h3 class='category'>标签</h3>
-        <tags class='hot-label' :tags='tags'></tags>
+      <div class='right-container'>
+        <div class='hot-search-container'>
+          <div class='category-container'>
+            <i class='iconfont ohu-hot'></i>
+            <h3 class='category'>热门搜索</h3>
+          </div>
+          <tags class='hot-search' :tags='tags'></tags>
+        </div>
+        <div class='hot-label-container'>
+          <div class='category-container'>
+            <i class='iconfont ohu-tag'></i>
+            <h3 class='category'>标签</h3>
+          </div>
+          <tags class='hot-label' :tags='tags'></tags>
+        </div>
       </div>
     </div>
   </div>
@@ -21,6 +32,8 @@
 <script>
 import ArticleItem from './article/ArticleItem'
 import Tags from '../components/Tags'
+import Carousel from '../components/Carousel'
+import { getScrollTop } from '../util/window'
 
 export default {
   name: 'Home',
@@ -53,15 +66,46 @@ export default {
         {
           name: 'Blender'
         }
+      ],
+      carouselContents: [
+        {
+          id: 1,
+          image:
+            'https://img.moegirl.org/common/7/76/Princess_connect_main_picture.png'
+        },
+        {
+          id: 2,
+          image:
+            'https://img.moegirl.org/common/7/76/Princess_connect_main_picture.png'
+        },
+        {
+          id: 3,
+          image:
+            'https://img.moegirl.org/common/7/76/Princess_connect_main_picture.png'
+        }
       ]
     }
   },
   components: {
     ArticleItem,
-    Tags
+    Tags,
+    Carousel
   },
-  activated() {},
-  methods: {}
+  mounted() {
+    window.addEventListener('scroll', function() {
+      console.log('height---------> ' + window.screen.height)
+      console.log('scrollTop---------> ' + getScrollTop())
+      console.log('clientHeight---------> ' + document.body.clientHeight)
+      if (window.screen.height + getScrollTop() > document.body.clientHeight) {
+        // 加载下一页数据
+      }
+    })
+  },
+  methods: {
+    cellClick(index) {
+      this.$router.push({ path: `article/${this.carouselContents[index].id}` })
+    }
+  }
 }
 </script>
 
@@ -69,18 +113,35 @@ export default {
 .home {
   width: 1200px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: row;
 
-  .right-container {
-    margin: 70px 0 0 50px;
+  .carousel-container {
+    margin: 70px 0 0 0;
+  }
 
-    .hot-search-container {
+  .content-container {
+    display: flex;
+    flex-direction: row;
+    margin: 70px 0 0 0;
 
-    }
+    .right-container {
+      margin: 70px 0 0 50px;
 
-    .hot-label-container {
-      margin: 70px 0 0 0;
+      .category-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        line-height: 22px;
+      }
+
+      .hot-label-container {
+        margin: 100px 0 0 0;
+      }
+
+      i {
+        font-size: 22px;
+        color: #333;
+        margin: 0 10px 0 0;
+      }
     }
   }
 }

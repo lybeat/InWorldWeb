@@ -4,20 +4,20 @@
     <div class='contents-container'>
       <p class='content' v-for='(c, index) in contents' :key='index'>{{ c.title }}</p>
     </div>
-    <more :path='"/boss"' :id="1"></more>
+    <view-more :path='"/boss"' :id="1"></view-more>
   </div>
 </template>
 
 <script>
 import OHeader from '../../components/Header'
-import More from '../../components/More'
+import ViewMore from '../../components/more/ViewMore'
 
 export default {
   name: '',
   props: {},
   components: {
     OHeader,
-    More
+    ViewMore
   },
   data() {
     return {

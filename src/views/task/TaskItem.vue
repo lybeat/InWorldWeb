@@ -4,20 +4,20 @@
     <div class='task-container'>
       <p class='task-summary'>摄像头动画（任务的简单描述）</p>
     </div>
-    <more :path='"/task"' :id="1"></more>
+    <view-more :path='"/task"' :id="1"></view-more>
   </div>
 </template>
 
 <script>
 import OHeader from '../../components/Header'
-import More from '../../components/More'
+import ViewMore from '../../components/more/ViewMore'
 
 export default {
   name: '',
   props: {},
   components: {
     OHeader,
-    More
+    ViewMore
   },
   data() {
     return {}
