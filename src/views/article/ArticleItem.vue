@@ -44,12 +44,12 @@ export default {
       this.$router.push({ path: `/article/${id}` })
     },
     gotoUserPage(id) {
-      this.$router.push({ path: `/user/${id}`})
+      this.$router.push({ path: `/user/${id}` })
     },
     gotoFilterPage() {
       let keyword = this.$refs.tag.textContent
       this.$store.commit('newKeyword', keyword)
-      this.$router.push({ path: `/filter/${keyword}` })
+      this.$router.push({ name: 'Filter', params: { keyword: this.keyword } })
     }
   }
 }
